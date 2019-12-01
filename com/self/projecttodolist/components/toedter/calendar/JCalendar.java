@@ -39,7 +39,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import com.toedter.components.UTF8ResourceBundle;
+import com.self.projecttodolist.components.toedter.components.UTF8ResourceBundle;
 
 /**
  * JCalendar is a bean for entering a date by choosing the year, month and day.

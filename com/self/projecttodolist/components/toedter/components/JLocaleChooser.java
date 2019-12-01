@@ -19,7 +19,7 @@
  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
  */
 
-package com.toedter.components;
+package com.self.projecttodolist.components.toedter.components;
 
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
@@ -45,17 +45,17 @@ public class JLocaleChooser extends JComboBox implements ItemListener {
 	 * Default JLocaleChooser constructor.
 	 */
 	public JLocaleChooser() {
-	    this(null);
+		this(null);
 	}
 
-    /**
-     * Returns "JLocaleChoose".
-     *
-     * @return the name value
-     */
-    public String getName() {
-        return "JLocaleChoose";
-    }
+	/**
+	 * Returns "JLocaleChoose".
+	 *
+	 * @return the name value
+	 */
+	public String getName() {
+		return "JLocaleChoose";
+	}
 
 	/**
 	 * Default JLocaleChooser constructor.
@@ -111,8 +111,8 @@ public class JLocaleChooser extends JComboBox implements ItemListener {
 		}
 
 		firePropertyChange("locale", oldLocale, locale);
-		if(component != null) {
-		    component.setLocale(l);
+		if (component != null) {
+			component.setLocale(l);
 		}
 	}
 
@@ -133,8 +133,7 @@ public class JLocaleChooser extends JComboBox implements ItemListener {
 	}
 
 	/**
-	 * Creates a JFrame with a JLocaleChooser inside and can be used for
-	 * testing.
+	 * Creates a JFrame with a JLocaleChooser inside and can be used for testing.
 	 */
 	static public void main(String[] s) {
 		JFrame frame = new JFrame("LocaleChooser");
@@ -147,4 +146,3 @@ public class JLocaleChooser extends JComboBox implements ItemListener {
 	private Locale locale;
 	private int localeCount;
 }
-

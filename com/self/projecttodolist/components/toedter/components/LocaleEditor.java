@@ -18,7 +18,7 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
  */
-package com.toedter.components;
+package com.self.projecttodolist.components.toedter.components;
 
 import java.util.Calendar;
 import java.util.Locale;
@@ -61,11 +61,9 @@ public class LocaleEditor extends java.beans.PropertyEditorSupport {
 	/**
 	 * Sets the locale strings as text and invokes setValue( locale ).
 	 * 
-	 * @param text
-	 *            the locale string text
+	 * @param text the locale string text
 	 * 
-	 * @throws IllegalArgumentException
-	 *             not used
+	 * @throws IllegalArgumentException not used
 	 */
 	public void setAsText(String text) throws IllegalArgumentException {
 		for (int i = 0; i < length; i++)

@@ -20,7 +20,7 @@
  */
 package com.self.projecttodolist.components.toedter.calendar;
 
-import com.toedter.components.GenericBeanInfo;
+import com.self.projecttodolist.components.toedter.components.GenericBeanInfo;
 
 /**
  * A BeanInfo class for the JMonthChooser bean.

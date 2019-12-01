@@ -53,8 +53,8 @@ import javax.swing.text.MaskFormatter;
  * @version $LastChangedRevision: 97 $
  * @version $LastChangedDate: 2006-05-24 17:30:41 +0200 (Mi, 24 Mai 2006) $
  */
-public class JTextFieldDateEditor extends JFormattedTextField implements IDateEditor,
-		CaretListener, FocusListener, ActionListener {
+public class JTextFieldDateEditor extends JFormattedTextField
+		implements IDateEditor, CaretListener, FocusListener, ActionListener {
 
 	private static final long serialVersionUID = -8901842591101625304L;
 
@@ -96,8 +96,7 @@ public class JTextFieldDateEditor extends JFormattedTextField implements IDateEd
 		this(true, datePattern, maskPattern, placeholder);
 	}
 
-	public JTextFieldDateEditor(boolean showMask, String datePattern, String maskPattern,
-			char placeholder) {
+	public JTextFieldDateEditor(boolean showMask, String datePattern, String maskPattern, char placeholder) {
 		dateFormatter = (SimpleDateFormat) DateFormat.getDateInstance(DateFormat.MEDIUM);
 		dateFormatter.setLenient(false);
 
@@ -130,7 +129,8 @@ public class JTextFieldDateEditor extends JFormattedTextField implements IDateEd
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see com.self.projecttodolist.components.toedter.calendar.IDateEditor#getDate()
+	 * @see
+	 * com.self.projecttodolist.components.toedter.calendar.IDateEditor#getDate()
 	 */
 	public Date getDate() {
 		try {
@@ -149,7 +149,9 @@ public class JTextFieldDateEditor extends JFormattedTextField implements IDateEd
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see com.self.projecttodolist.components.toedter.calendar.IDateEditor#setDate(java.util.Date)
+	 * @see
+	 * com.self.projecttodolist.components.toedter.calendar.IDateEditor#setDate(java
+	 * .util.Date)
 	 */
 	public void setDate(Date date) {
 		setDate(date, true);
@@ -158,10 +160,8 @@ public class JTextFieldDateEditor extends JFormattedTextField implements IDateEd
 	/**
 	 * Sets the date.
 	 * 
-	 * @param date
-	 *            the date
-	 * @param firePropertyChange
-	 *            true, if the date property should be fired.
+	 * @param date               the date
+	 * @param firePropertyChange true, if the date property should be fired.
 	 */
 	protected void setDate(Date date, boolean firePropertyChange) {
 		Date oldDate = this.date;
@@ -196,7 +196,8 @@ public class JTextFieldDateEditor extends JFormattedTextField implements IDateEd
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see com.self.projecttodolist.components.toedter.calendar.IDateEditor#setDateFormatString(java.lang.String)
+	 * @see com.self.projecttodolist.components.toedter.calendar.IDateEditor#
+	 * setDateFormatString(java.lang.String)
 	 */
 	public void setDateFormatString(String dateFormatString) {
 		if (ignoreDatePatternChange) {
@@ -217,7 +218,8 @@ public class JTextFieldDateEditor extends JFormattedTextField implements IDateEd
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see com.self.projecttodolist.components.toedter.calendar.IDateEditor#getDateFormatString()
+	 * @see com.self.projecttodolist.components.toedter.calendar.IDateEditor#
+	 * getDateFormatString()
 	 */
 	public String getDateFormatString() {
 		return datePattern;
@@ -226,7 +228,8 @@ public class JTextFieldDateEditor extends JFormattedTextField implements IDateEd
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see com.self.projecttodolist.components.toedter.calendar.IDateEditor#getUiComponent()
+	 * @see com.self.projecttodolist.components.toedter.calendar.IDateEditor#
+	 * getUiComponent()
 	 */
 	public JComponent getUiComponent() {
 		return this;
@@ -236,8 +239,7 @@ public class JTextFieldDateEditor extends JFormattedTextField implements IDateEd
 	 * After any user input, the value of the textfield is proofed. Depending on
 	 * being a valid date, the value is colored green or red.
 	 * 
-	 * @param event
-	 *            the caret event
+	 * @param event the caret event
 	 */
 	public void caretUpdate(CaretEvent event) {
 		String text = getText().trim();
@@ -305,13 +307,12 @@ public class JTextFieldDateEditor extends JFormattedTextField implements IDateEd
 	}
 
 	/**
-	 * Creates a mask from a date pattern. This is a very simple (and
-	 * incomplete) implementation thet works only with numbers. A date pattern
-	 * of "MM/dd/yy" will result in the mask "##/##/##". Probably you want to
-	 * override this method if it does not fit your needs.
+	 * Creates a mask from a date pattern. This is a very simple (and incomplete)
+	 * implementation thet works only with numbers. A date pattern of "MM/dd/yy"
+	 * will result in the mask "##/##/##". Probably you want to override this method
+	 * if it does not fit your needs.
 	 * 
-	 * @param datePattern
-	 *            the date pattern
+	 * @param datePattern the date pattern
 	 * @return the mask
 	 */
 	public String createMaskFromDatePattern(String datePattern) {
@@ -346,8 +347,7 @@ public class JTextFieldDateEditor extends JFormattedTextField implements IDateEd
 	/**
 	 * Sets the mask visible.
 	 * 
-	 * @param isMaskVisible
-	 *            true, if the mask should be visible
+	 * @param isMaskVisible true, if the mask should be visible
 	 */
 	public void setMaskVisible(boolean isMaskVisible) {
 		this.isMaskVisible = isMaskVisible;
@@ -365,8 +365,8 @@ public class JTextFieldDateEditor extends JFormattedTextField implements IDateEd
 	}
 
 	/**
-	 * Returns the preferred size. If a date pattern is set, it is the size the
-	 * date pattern would take.
+	 * Returns the preferred size. If a date pattern is set, it is the size the date
+	 * pattern would take.
 	 */
 	public Dimension getPreferredSize() {
 		if (datePattern != null) {
@@ -383,9 +383,8 @@ public class JTextFieldDateEditor extends JFormattedTextField implements IDateEd
 	}
 
 	/**
-	 * Enables and disabled the compoment. It also fixes the background bug
-	 * 4991597 and sets the background explicitely to a
-	 * TextField.inactiveBackground.
+	 * Enables and disabled the compoment. It also fixes the background bug 4991597
+	 * and sets the background explicitely to a TextField.inactiveBackground.
 	 */
 	public void setEnabled(boolean b) {
 		super.setEnabled(b);
@@ -397,7 +396,8 @@ public class JTextFieldDateEditor extends JFormattedTextField implements IDateEd
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see com.self.projecttodolist.components.toedter.calendar.IDateEditor#getMaxSelectableDate()
+	 * @see com.self.projecttodolist.components.toedter.calendar.IDateEditor#
+	 * getMaxSelectableDate()
 	 */
 	public Date getMaxSelectableDate() {
 		return dateUtil.getMaxSelectableDate();
@@ -406,7 +406,8 @@ public class JTextFieldDateEditor extends JFormattedTextField implements IDateEd
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see com.self.projecttodolist.components.toedter.calendar.IDateEditor#getMinSelectableDate()
+	 * @see com.self.projecttodolist.components.toedter.calendar.IDateEditor#
+	 * getMinSelectableDate()
 	 */
 	public Date getMinSelectableDate() {
 		return dateUtil.getMinSelectableDate();
@@ -415,7 +416,8 @@ public class JTextFieldDateEditor extends JFormattedTextField implements IDateEd
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see com.self.projecttodolist.components.toedter.calendar.IDateEditor#setMaxSelectableDate(java.util.Date)
+	 * @see com.self.projecttodolist.components.toedter.calendar.IDateEditor#
+	 * setMaxSelectableDate(java.util.Date)
 	 */
 	public void setMaxSelectableDate(Date max) {
 		dateUtil.setMaxSelectableDate(max);
@@ -425,7 +427,8 @@ public class JTextFieldDateEditor extends JFormattedTextField implements IDateEd
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see com.self.projecttodolist.components.toedter.calendar.IDateEditor#setMinSelectableDate(java.util.Date)
+	 * @see com.self.projecttodolist.components.toedter.calendar.IDateEditor#
+	 * setMinSelectableDate(java.util.Date)
 	 */
 	public void setMinSelectableDate(Date min) {
 		dateUtil.setMinSelectableDate(min);
@@ -435,8 +438,8 @@ public class JTextFieldDateEditor extends JFormattedTextField implements IDateEd
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see com.self.projecttodolist.components.toedter.calendar.IDateEditor#setSelectableDateRange(java.util.Date,
-	 *      java.util.Date)
+	 * @see com.self.projecttodolist.components.toedter.calendar.IDateEditor#
+	 * setSelectableDateRange(java.util.Date, java.util.Date)
 	 */
 	public void setSelectableDateRange(Date min, Date max) {
 		dateUtil.setSelectableDateRange(min, max);
@@ -446,8 +449,7 @@ public class JTextFieldDateEditor extends JFormattedTextField implements IDateEd
 	/**
 	 * Creates a JFrame with a JCalendar inside and can be used for testing.
 	 * 
-	 * @param s
-	 *            The command line arguments
+	 * @param s The command line arguments
 	 */
 	public static void main(String[] s) {
 		JFrame frame = new JFrame("JTextFieldDateEditor");

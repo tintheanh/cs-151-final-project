@@ -19,7 +19,7 @@
  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
  */
 
-package com.toedter.components;
+package com.self.projecttodolist.components.toedter.components;
 
 import java.io.UnsupportedEncodingException;
 import java.util.Enumeration;
@@ -61,8 +61,7 @@ public abstract class UTF8ResourceBundle {
 				try {
 					return new String(value.getBytes("ISO-8859-1"), "UTF-8");
 				} catch (UnsupportedEncodingException exception) {
-					throw new RuntimeException(
-							"UTF-8 encoding is not supported.", exception);
+					throw new RuntimeException("UTF-8 encoding is not supported.", exception);
 				}
 			}
 			return null;

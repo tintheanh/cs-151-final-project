@@ -20,7 +20,7 @@
  */
 package com.self.projecttodolist.components.toedter.calendar;
 
-import com.toedter.components.JSpinField;
+import com.self.projecttodolist.components.toedter.components.JSpinField;
 
 import java.util.Calendar;
 

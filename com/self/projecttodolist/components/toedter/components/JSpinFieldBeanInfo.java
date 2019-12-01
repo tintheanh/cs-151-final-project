@@ -18,8 +18,7 @@
  *  along with this program; if not, write to the Free Software
  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
  */
-package com.toedter.components;
-
+package com.self.projecttodolist.components.toedter.components;
 
 /**
  * A BeanInfo class for the JLocaleChooser bean.

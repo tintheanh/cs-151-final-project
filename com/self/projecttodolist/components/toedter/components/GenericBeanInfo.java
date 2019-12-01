@@ -18,7 +18,7 @@
  *  along with this program; if not, write to the Free Software
  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
  */
-package com.toedter.components;
+package com.self.projecttodolist.components.toedter.components;
 
 import java.awt.Image;
 import java.beans.PropertyEditorManager;
@@ -57,34 +57,33 @@ public class GenericBeanInfo extends SimpleBeanInfo {
 		} catch (RuntimeException e) {
 			System.out.println("GenericBeanInfo.GenericBeanInfo(): " + e);
 		}
-		
-		if(registerLocaleEditor) {
-			PropertyEditorManager.registerEditor(Locale.class,LocaleEditor.class);
+
+		if (registerLocaleEditor) {
+			PropertyEditorManager.registerEditor(Locale.class, LocaleEditor.class);
 		}
 	}
 
 	/**
-	 * This method returns an image object that can be used to represent the
-	 * bean in toolboxes, toolbars, etc.
+	 * This method returns an image object that can be used to represent the bean in
+	 * toolboxes, toolbars, etc.
 	 * 
-	 * @param iconKind
-	 *            the kind of requested icon
+	 * @param iconKind the kind of requested icon
 	 * 
 	 * @return the icon image
 	 */
 	public Image getIcon(int iconKind) {
 		switch (iconKind) {
-			case ICON_COLOR_16x16 :
-				return iconColor16;
+		case ICON_COLOR_16x16:
+			return iconColor16;
 
-			case ICON_COLOR_32x32 :
-				return iconColor32;
+		case ICON_COLOR_32x32:
+			return iconColor32;
 
-			case ICON_MONO_16x16 :
-				return iconMono16;
+		case ICON_MONO_16x16:
+			return iconMono16;
 
-			case ICON_MONO_32x32 :
-				return iconMono32;
+		case ICON_MONO_32x32:
+			return iconMono32;
 		}
 
 		return null;

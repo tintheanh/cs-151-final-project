@@ -17,7 +17,7 @@
  *  along with this program; if not, write to the Free Software
  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
  */
-package com.toedter.plaf;
+package com.self.projecttodolist.components.toedter.plaf;
 
 import java.awt.Font;
 
@@ -45,8 +45,7 @@ public class JCalendarTheme extends DefaultMetalTheme {
 	static final ColorUIResource ORANGE_FOCUS = new ColorUIResource(245, 165, 16);
 	static final ColorUIResource GREEN_CHECK = new ColorUIResource(33, 161, 33);
 	static final ColorUIResource WHITE = new ColorUIResource(255, 255, 255);
-	static final FontUIResource standardFont = new FontUIResource(
-			new Font("Tahoma", Font.PLAIN, 11));
+	static final FontUIResource standardFont = new FontUIResource(new Font("Tahoma", Font.PLAIN, 11));
 
 	/**
 	 * Creates a new JCalendarTheme object.
