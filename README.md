@@ -12,6 +12,6 @@ How to run
 ```
 git clone https://github.com/tintheanh/cs-151-final-project.git
 cd cs-151-final-project/
-javac com/self/projecttodolist/MainView.java
-java com.self.projecttodolist.MainView
+javac com/self/projecttodolist/view/MainView.java
+java com.self.projecttodolist.view.MainView
 ```
