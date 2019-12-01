@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.self.projecttodolist;
+package com.self.projecttodolist.view;
 
 import com.self.projecttodolist.components.MyDateTimeRenderer;
 import com.self.projecttodolist.model.Task;
