@@ -119,7 +119,7 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addBtnActionPerformed"/>
       </Events>
     </Component>
-    <Component class="com.toedter.calendar.JDateChooser" name="date_chooser">
+    <Component class="com.self.projecttodolist.components.toedter.calendar.JDateChooser" name="date_chooser">
     </Component>
     <Component class="javax.swing.JSpinner" name="time_spinner">
       <AuxValues>

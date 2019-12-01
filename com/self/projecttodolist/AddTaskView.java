@@ -48,11 +48,9 @@ public class AddTaskView extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-
-        jSpinner1 = new javax.swing.JSpinner();
         taskName = new javax.swing.JTextField();
         addBtn = new javax.swing.JButton();
-        date_chooser = new com.toedter.calendar.JDateChooser();
+        date_chooser = new com.self.projecttodolist.components.toedter.calendar.JDateChooser();
         time_spinner = new JSpinner( new SpinnerDateModel() );
         AMPMSelector = new javax.swing.JComboBox<>();
         taskType = new javax.swing.JComboBox<>();
@@ -247,9 +245,8 @@ public class AddTaskView extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> AMPMSelector;
     private javax.swing.JButton addBtn;
     private javax.swing.JLabel addTaskViewLabel;
-    private com.toedter.calendar.JDateChooser date_chooser;
+    private com.self.projecttodolist.components.toedter.calendar.JDateChooser date_chooser;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JSpinner jSpinner1;
     private javax.swing.JTextArea noteField;
     private javax.swing.JLabel noteLabel;
     private javax.swing.JLabel taskDateLabel;

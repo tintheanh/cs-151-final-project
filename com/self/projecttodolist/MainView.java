@@ -5,7 +5,7 @@
  */
 package com.self.projecttodolist;
 
-import com.self.projecttodolist.model.MyDateTimeRenderer;
+import com.self.projecttodolist.components.MyDateTimeRenderer;
 import com.self.projecttodolist.model.Task;
 import com.self.projecttodolist.model.TaskComponent;
 import com.self.projecttodolist.model.TaskGroup;
