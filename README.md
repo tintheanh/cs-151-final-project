@@ -5,8 +5,8 @@ This is the repository of CS 151 project
 Members:
 - Anh Nguyen
 - Ahsan Ali Syed
-- Brady ChristensenDraco
-- ZhaoDraco Zhao
+- Brady Christensen
+- Draco Zhao
 
 How to run
 ```
