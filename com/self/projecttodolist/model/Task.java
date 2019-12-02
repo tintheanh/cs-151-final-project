@@ -37,7 +37,7 @@ public class Task<T> extends TaskComponent {
     public String getTitle() {
         return title;
     }
-    
+
     @Override
     public String getNote() {
         return note;
@@ -52,10 +52,10 @@ public class Task<T> extends TaskComponent {
         int day = cal.get(Calendar.DAY_OF_MONTH);
         int hour = cal.get(Calendar.HOUR_OF_DAY);
         int min = cal.get(Calendar.MINUTE);
-        
+
         return LocalDateTime.of(year, month, day, hour, min);
     }
-    
+
     @Override
     public String getDateCreated() {
         DateFormat df = new SimpleDateFormat("EEE, d MMM yyyy HH:mm:ss");
@@ -71,11 +71,6 @@ public class Task<T> extends TaskComponent {
     public String getCategory() {
         return category;
     }
-    
-    @Override
-    public T[] toTaskArray() {
-        return (T[]) new Object[] {getTitle(), getDate(), getStatus(), getCategory(), getNote()};
-    }
 
     @Override
     public void setTitle(String title) {
@@ -86,12 +81,12 @@ public class Task<T> extends TaskComponent {
     public void setDate(Date date) {
         this.date = date;
     }
-    
+
     @Override
     public void setNote(String note) {
         this.note = note;
     }
-    
+
     @Override
     public void setDateCreated(Date dateCreated) {
         this.dateCreated = dateCreated;
@@ -107,7 +102,14 @@ public class Task<T> extends TaskComponent {
         this.category = category;
     }
 
-    public void displayTaskInfo() {
+    @Override
+    public T[] toTaskArray() {
+
+        return (T[]) new Object[] { getTitle(), getDate(), getStatus(), getCategory(), getNote() };
+    }
+
+    @Override
+    public void displayTaskInfo() { // For debugging
         System.out.println(getTitle());
     }
 

@@ -14,14 +14,26 @@ import java.util.Date;
  */
 public abstract class TaskComponent<T> {
 
+    /*
+     * ------------------------------------ For TaskGroup
+     * ------------------------------------
+     */
     public void add(TaskComponent newTaskComponent) {
+        throw new UnsupportedOperationException();
+    }
+
+    public int getSize() {
+        throw new UnsupportedOperationException();
+    }
+
+    public void remove(int index) {
         throw new UnsupportedOperationException();
     }
 
     public TaskComponent getComponent(int componentIndex) {
         throw new UnsupportedOperationException();
     }
-    
+
     public String getGroupName() {
         throw new UnsupportedOperationException();
     }
@@ -30,6 +42,22 @@ public abstract class TaskComponent<T> {
         throw new UnsupportedOperationException();
     }
 
+    public T[][] toTaskGroupArray() {
+        throw new UnsupportedOperationException();
+    }
+
+    public T[][] toAllTaskGroupArray() {
+        throw new UnsupportedOperationException();
+    }
+
+    public T[] toTaskArray() {
+        throw new UnsupportedOperationException();
+    }
+
+    /*
+     * ------------------------------------ For Task
+     * ------------------------------------
+     */
     public String getTitle() {
         throw new UnsupportedOperationException();
     }
@@ -37,7 +65,7 @@ public abstract class TaskComponent<T> {
     public LocalDateTime getDate() {
         throw new UnsupportedOperationException();
     }
-    
+
     public String getDateCreated() {
         throw new UnsupportedOperationException();
     }
@@ -49,23 +77,11 @@ public abstract class TaskComponent<T> {
     public String getCategory() {
         throw new UnsupportedOperationException();
     }
-    
-    public T[][] toTaskGroupArray() {
-        throw new UnsupportedOperationException();
-    }
-    
-    public T[][] toAllTaskGroupArray() {
-        throw new UnsupportedOperationException();
-    }
-    
-    public T[] toTaskArray() {
+
+    public String getNote() {
         throw new UnsupportedOperationException();
     }
 
-    public void displayTaskInfo() {
-        throw new UnsupportedOperationException();
-    }
-    
     public void setTitle(String title) {
         throw new UnsupportedOperationException();
     }
@@ -73,7 +89,7 @@ public abstract class TaskComponent<T> {
     public void setDate(Date date) {
         throw new UnsupportedOperationException();
     }
-    
+
     public void setDateCreated(Date dateCreated) {
         throw new UnsupportedOperationException();
     }
@@ -85,22 +101,14 @@ public abstract class TaskComponent<T> {
     public void setCategory(String category) {
         throw new UnsupportedOperationException();
     }
-    
+
     public void setNote(String note) {
         throw new UnsupportedOperationException();
     }
-    
-    public String getNote() {
+
+    // For debugging
+    public void displayTaskInfo() {
         throw new UnsupportedOperationException();
     }
-    
-    public int getSize() {
-        throw new UnsupportedOperationException();
-    }
-    
-    public void remove(int index) {
-        throw new UnsupportedOperationException();
-    }
-    
 
 }

@@ -22,7 +22,6 @@ public class TaskGroup<T> extends TaskComponent {
     public TaskGroup(String newGroupName, String newGroupDescription) {
         groupName = newGroupName;
         groupDescription = newGroupDescription;
-
     }
 
     @Override
@@ -45,12 +44,9 @@ public class TaskGroup<T> extends TaskComponent {
         taskComponents.add(newTaskComponent);
     }
 
-
     @Override
     public TaskComponent getComponent(int componentIndex) {
-
         return (TaskComponent) taskComponents.get(componentIndex);
-
     }
 
     @Override
@@ -59,18 +55,13 @@ public class TaskGroup<T> extends TaskComponent {
     }
 
     @Override
-    public void displayTaskInfo() {
-        System.out.println(getGroupName() + " "
-                + getGroupDescription() + "\n");
-
+    public void displayTaskInfo() { // For debugging
+        System.out.println(getGroupName() + " " + getGroupDescription() + "\n");
         Iterator taskIterator = taskComponents.iterator();
 
         while (taskIterator.hasNext()) {
-
             TaskComponent taskInfo = (TaskComponent) taskIterator.next();
-
             taskInfo.displayTaskInfo();
-
         }
 
     }
@@ -83,6 +74,7 @@ public class TaskGroup<T> extends TaskComponent {
             TaskComponent task = taskComponents.get(i);
             array[i] = task.toTaskArray();
         }
+
         return (T[][]) array;
     }
 
@@ -92,7 +84,7 @@ public class TaskGroup<T> extends TaskComponent {
         for (int i = 0; i < taskComponents.size() - 1; i++) {
             totalSize += taskComponents.get(i).getSize();
         }
-        
+
         Object[][] array = new Object[totalSize][];
 
         int count = 0;
@@ -103,6 +95,7 @@ public class TaskGroup<T> extends TaskComponent {
                 count++;
             }
         }
+
         return (T[][]) array;
     }
 }
