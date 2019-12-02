@@ -8,7 +8,7 @@ Members:
 - Brady Christensen
 - Draco Zhao
 
-How to run
+How to run:
 ```
 git clone https://github.com/tintheanh/cs-151-final-project.git
 cd cs-151-final-project/
