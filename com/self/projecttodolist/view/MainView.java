@@ -307,6 +307,9 @@ public class MainView extends javax.swing.JFrame {
                     break;
                 case "Urgent Tasks":
                     urgentTasks.remove(row);
+                    if (removedTask.getCategory() == "Home Task") homeTasks.removeById(removedTask.getId());
+                    else if (removedTask.getCategory() == "School Task") schoolTasks.removeById(removedTask.getId());
+                    else otherTasks.removeById(removedTask.getId());
                     taskTable.setModel(new DefaultTableModel(urgentTasks.toTaskGroupArray(), tableColumnNames));
                     break;
                 default: {
@@ -354,6 +357,9 @@ public class MainView extends javax.swing.JFrame {
                     break;
                 case "Urgent Tasks":
                     urgentTasks.remove(row);
+                    if (doneTask.getCategory() == "Home Task") homeTasks.removeById(doneTask.getId());
+                    else if (doneTask.getCategory() == "School Task") schoolTasks.removeById(doneTask.getId());
+                    else otherTasks.removeById(doneTask.getId());
                     taskTable.setModel(new DefaultTableModel(urgentTasks.toTaskGroupArray(), tableColumnNames));
                     break;
                 default: {
@@ -394,6 +400,12 @@ public class MainView extends javax.swing.JFrame {
             default:
                 otherTasks.add(undoneTask);
                 break;
+            }
+            Date date = Date.from( undoneTask.getDate().atZone( ZoneId.systemDefault()).toInstant());
+            float days = (date.getTime() - new Date().getTime()) / (1000 * 60 * 60 * 24);
+
+            if (days >= 0 && days <= 7.0) {
+                urgentTasks.add(undoneTask);
             }
             doneTasks.remove(row);
             taskTable.setModel(new DefaultTableModel(doneTasks.toTaskGroupArray(), tableColumnNames));
