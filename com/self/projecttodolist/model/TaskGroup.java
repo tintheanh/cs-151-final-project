@@ -55,6 +55,15 @@ public class TaskGroup<T> extends TaskComponent {
     }
 
     @Override
+    public void removeById(int id) {
+        int index = -1;
+        for (int i = 0; i < taskComponents.size(); i++) {
+            if (taskComponents.get(i).getId() == id) index = i;
+        }
+        if (index != -1) taskComponents.remove(index);
+    }
+
+    @Override
     public void displayTaskInfo() { // For debugging
         System.out.println(getGroupName() + " " + getGroupDescription() + "\n");
         Iterator taskIterator = taskComponents.iterator();

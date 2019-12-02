@@ -30,6 +30,10 @@ public abstract class TaskComponent<T> {
         throw new UnsupportedOperationException();
     }
 
+    public void removeById(int id) {
+        throw new UnsupportedOperationException();
+    }
+
     public TaskComponent getComponent(int componentIndex) {
         throw new UnsupportedOperationException();
     }
@@ -58,6 +62,10 @@ public abstract class TaskComponent<T> {
      * ------------------------------------ For Task
      * ------------------------------------
      */
+    public int getId() {
+        throw new UnsupportedOperationException();
+    }
+
     public String getTitle() {
         throw new UnsupportedOperationException();
     }
@@ -91,6 +99,10 @@ public abstract class TaskComponent<T> {
     }
 
     public void setDateCreated(Date dateCreated) {
+        throw new UnsupportedOperationException();
+    }
+
+    public void setId(int id) {
         throw new UnsupportedOperationException();
     }
 

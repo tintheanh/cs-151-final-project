@@ -10,13 +10,16 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Random; 
+
 
 /**
  *
  * @author anhnguyen
  */
 public class Task<T> extends TaskComponent {
-
+    private final Random rand = new Random();
+    private int id;
     private String title;
     private Date date;
     private Date dateCreated;
@@ -25,12 +28,18 @@ public class Task<T> extends TaskComponent {
     private String note;
 
     public Task(String title, Date date, Date dateCreated, String status, String category, String note) {
+        this.id = rand.nextInt(1000); 
         this.title = title;
         this.date = date;
         this.dateCreated = dateCreated;
         this.status = status;
         this.category = category;
         this.note = note;
+    }
+
+    @Override
+    public int getId() {
+        return id;
     }
 
     @Override
@@ -73,6 +82,11 @@ public class Task<T> extends TaskComponent {
     }
 
     @Override
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    @Override
     public void setTitle(String title) {
         this.title = title;
     }
@@ -104,8 +118,7 @@ public class Task<T> extends TaskComponent {
 
     @Override
     public T[] toTaskArray() {
-
-        return (T[]) new Object[] { getTitle(), getDate(), getStatus(), getCategory(), getNote() };
+        return (T[]) new Object[] {getId(), getTitle(), getDate(), getStatus(), getCategory(), getNote() };
     }
 
     @Override

@@ -25,7 +25,7 @@ public class MainView extends javax.swing.JFrame {
 
     private TaskComponent allTasks, homeTasks, schoolTasks, otherTasks, removedTasks, doneTasks, urgentTasks;
 
-    private final String[] tableColumnNames = new String[] { "Title", "Date", "Status", "Category" };
+    private final String[] tableColumnNames = new String[] {"ID", "Title", "Date", "Status", "Category" };
 
     public MainView() {
         // Initialize all task tables
@@ -66,7 +66,7 @@ public class MainView extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         taskTable.setModel(new javax.swing.table.DefaultTableModel(homeTasks.toTaskGroupArray(), tableColumnNames));
-        taskTable.getColumnModel().getColumn(1).setCellRenderer(new MyDateTimeRenderer());
+        taskTable.getColumnModel().getColumn(2).setCellRenderer(new MyDateTimeRenderer());
         taskTable.setAutoCreateRowSorter(true);
         scrollPane.setViewportView(taskTable);
 
@@ -220,14 +220,14 @@ public class MainView extends javax.swing.JFrame {
             taskTable.setModel(new DefaultTableModel(allTasks.toAllTaskGroupArray(), tableColumnNames));
             break;
         }
-        taskTable.getColumnModel().getColumn(1).setCellRenderer(new MyDateTimeRenderer());
+        taskTable.getColumnModel().getColumn(2).setCellRenderer(new MyDateTimeRenderer());
         taskTable.setAutoCreateRowSorter(true);
     }// GEN-LAST:event_taskTypeSpinnerActionPerformed
 
     private void addBtnActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_addBtnActionPerformed
         String taskType = (String) taskTypeSpinner.getSelectedItem();
 
-        AddTaskView addview = new AddTaskView(taskType, allTasks, (DefaultTableModel) taskTable.getModel());
+        AddTaskView addview = new AddTaskView(taskType, allTasks, taskTable);
         addview.setVisible(true);
     }// GEN-LAST:event_addBtnActionPerformed
 
@@ -266,6 +266,23 @@ public class MainView extends javax.swing.JFrame {
         return note;
     }
 
+    private Task retrieveTaskData(javax.swing.JTable table, int row, String typeOfAction, String taskType) {
+        int id = (int) table.getModel().getValueAt(row, 0);
+        String title = table.getModel().getValueAt(row, 1).toString();
+        LocalDateTime ldate = (LocalDateTime) table.getModel().getValueAt(row, 2);
+        String status = table.getModel().getValueAt(row, 3).toString();
+        String category = table.getModel().getValueAt(row, 4).toString();
+        Date date = Date.from(ldate.atZone(ZoneId.systemDefault()).toInstant());
+        String note = getNoteFromTable(row, category, taskType);
+
+        Task task = new Task(title, date, new Date(), status, category, note);
+        task.setId(id);
+        if (typeOfAction == "Done") task.setStatus("Done");
+        else if (typeOfAction == "Undone") task.setStatus("Undone");
+
+        return task;
+    }
+
     private void deleteBtnActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_deleteBtnActionPerformed
         int originalRow = taskTable.getSelectedRow();
         String taskType = (String) taskTypeSpinner.getSelectedItem();
@@ -273,38 +290,34 @@ public class MainView extends javax.swing.JFrame {
         if (originalRow != -1) {
             int row = taskTable.convertRowIndexToModel(originalRow);
 
-            // Get task values from table
-            String title = taskTable.getModel().getValueAt(row, 0).toString();
-            LocalDateTime ldate = (LocalDateTime) taskTable.getModel().getValueAt(row, 1);
-            String status = taskTable.getModel().getValueAt(row, 2).toString();
-            String category = taskTable.getModel().getValueAt(row, 3).toString();
-            Date date = Date.from(ldate.atZone(ZoneId.systemDefault()).toInstant());
-            String note = getNoteFromTable(row, category, taskType);
-
-            // Save removed task for later adding to removedTasks
-            Task removedTask = new Task(title, date, new Date(), status, category, note);
+            Task removedTask = retrieveTaskData(taskTable, row, "Delete", taskType);
 
             switch (taskType) {
-            case "Home Tasks":
-                homeTasks.remove(row);
-                taskTable.setModel(new DefaultTableModel(homeTasks.toTaskGroupArray(), tableColumnNames));
-                break;
-            case "School Tasks":
-                schoolTasks.remove(row);
-                taskTable.setModel(new DefaultTableModel(schoolTasks.toTaskGroupArray(), tableColumnNames));
-                break;
-            case "Other Tasks":
-                otherTasks.remove(row);
-                taskTable.setModel(new DefaultTableModel(otherTasks.toTaskGroupArray(), tableColumnNames));
-                break;
-            case "Urgent Tasks":
-                urgentTasks.remove(row);
-                taskTable.setModel(new DefaultTableModel(urgentTasks.toTaskGroupArray(), tableColumnNames));
-                break;
-            default:
-                allTasks.remove(row);
-                taskTable.setModel(new DefaultTableModel(allTasks.toAllTaskGroupArray(), tableColumnNames));
-                break;
+                case "Home Tasks":
+                    homeTasks.remove(row);
+                    taskTable.setModel(new DefaultTableModel(homeTasks.toTaskGroupArray(), tableColumnNames));
+                    break;
+                case "School Tasks":
+                    schoolTasks.remove(row);
+                    taskTable.setModel(new DefaultTableModel(schoolTasks.toTaskGroupArray(), tableColumnNames));
+                    break;
+                case "Other Tasks":
+                    otherTasks.remove(row);
+                    taskTable.setModel(new DefaultTableModel(otherTasks.toTaskGroupArray(), tableColumnNames));
+                    break;
+                case "Urgent Tasks":
+                    urgentTasks.remove(row);
+                    taskTable.setModel(new DefaultTableModel(urgentTasks.toTaskGroupArray(), tableColumnNames));
+                    break;
+                default: {
+                    if (removedTask.getCategory() == "Home Task") homeTasks.removeById(removedTask.getId());
+                    else if (removedTask.getCategory() == "School Task") schoolTasks.removeById(removedTask.getId());
+                    else otherTasks.removeById(removedTask.getId());
+
+                    taskTable.setModel(new DefaultTableModel(allTasks.toAllTaskGroupArray(), tableColumnNames));
+                    taskTable.getColumnModel().getColumn(2).setCellRenderer(new MyDateTimeRenderer());
+                    break;
+                }
             }
 
             removedTasks.add(removedTask);
@@ -320,33 +333,30 @@ public class MainView extends javax.swing.JFrame {
         if (originalRow != -1) {
             int row = taskTable.convertRowIndexToModel(originalRow);
 
-            // Get task values from table
-            String title = taskTable.getModel().getValueAt(row, 0).toString();
-            LocalDateTime ldate = (LocalDateTime) taskTable.getModel().getValueAt(row, 1);
-            String status = "Done"; // Mark task done
-            String category = taskTable.getModel().getValueAt(row, 3).toString();
-            Date date = Date.from(ldate.atZone(ZoneId.systemDefault()).toInstant());
-            String note = getNoteFromTable(row, category, taskType);
-
-            Task doneTask = new Task(title, date, new Date(), status, category, note);
+            Task doneTask = retrieveTaskData(taskTable, row, "Done", taskType);
 
             switch (taskType) {
-            case "Home Tasks":
-                homeTasks.remove(row);
-                taskTable.setModel(new DefaultTableModel(homeTasks.toTaskGroupArray(), tableColumnNames));
-                break;
-            case "School Tasks":
-                schoolTasks.remove(row);
-                taskTable.setModel(new DefaultTableModel(schoolTasks.toTaskGroupArray(), tableColumnNames));
-                break;
-            case "Other Tasks":
-                otherTasks.remove(row);
-                taskTable.setModel(new DefaultTableModel(otherTasks.toTaskGroupArray(), tableColumnNames));
-                break;
-            default:
-                allTasks.remove(row);
-                taskTable.setModel(new DefaultTableModel(allTasks.toAllTaskGroupArray(), tableColumnNames));
-                break;
+                case "Home Tasks":
+                    homeTasks.remove(row);
+                    taskTable.setModel(new DefaultTableModel(homeTasks.toTaskGroupArray(), tableColumnNames));
+                    break;
+                case "School Tasks":
+                    schoolTasks.remove(row);
+                    taskTable.setModel(new DefaultTableModel(schoolTasks.toTaskGroupArray(), tableColumnNames));
+                    break;
+                case "Other Tasks":
+                    otherTasks.remove(row);
+                    taskTable.setModel(new DefaultTableModel(otherTasks.toTaskGroupArray(), tableColumnNames));
+                    break;
+                default: {
+                    if (doneTask.getCategory() == "Home Task") homeTasks.removeById(doneTask.getId());
+                    else if (doneTask.getCategory() == "School Task") schoolTasks.removeById(doneTask.getId());
+                    else otherTasks.removeById(doneTask.getId());
+
+                    taskTable.setModel(new DefaultTableModel(allTasks.toAllTaskGroupArray(), tableColumnNames));
+                    taskTable.getColumnModel().getColumn(2).setCellRenderer(new MyDateTimeRenderer());
+                    break;
+                }
             }
 
             doneTasks.add(doneTask);
@@ -361,17 +371,9 @@ public class MainView extends javax.swing.JFrame {
         if (originalRow != -1) {
             int row = taskTable.convertRowIndexToModel(originalRow);
 
-            // Get task values from table
-            String title = taskTable.getModel().getValueAt(row, 0).toString();
-            LocalDateTime ldate = (LocalDateTime) taskTable.getModel().getValueAt(row, 1);
-            String status = "Undone"; // Mark undone
-            String category = taskTable.getModel().getValueAt(row, 3).toString();
-            String note = getNoteFromTable(row, category, taskType);
-            Date date = Date.from(ldate.atZone(ZoneId.systemDefault()).toInstant());
+            Task undoneTask = retrieveTaskData(taskTable, row, "Undone", taskType);
 
-            Task undoneTask = new Task(title, date, new Date(), status, category, note);
-
-            switch (category) {
+            switch (undoneTask.getCategory()) {
             case "Home Task":
                 homeTasks.add(undoneTask);
                 break;
