@@ -308,7 +308,8 @@ public class MainView extends javax.swing.JFrame {
             }
 
             removedTasks.add(removedTask);
-        }
+        } else JOptionPane.showMessageDialog(null, "You must select one task to remove.", "Information",
+        JOptionPane.INFORMATION_MESSAGE);
 
     }// GEN-LAST:event_deleteBtnActionPerformed
 
@@ -349,7 +350,8 @@ public class MainView extends javax.swing.JFrame {
             }
 
             doneTasks.add(doneTask);
-        }
+        } else JOptionPane.showMessageDialog(null, "You must select one task to mark it done.", "Information",
+        JOptionPane.INFORMATION_MESSAGE);
     }// GEN-LAST:event_doneBtnActionPerformed
 
     private void undoneBtnActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_undoneBtnActionPerformed
@@ -382,7 +384,8 @@ public class MainView extends javax.swing.JFrame {
             }
             doneTasks.remove(row);
             taskTable.setModel(new DefaultTableModel(doneTasks.toTaskGroupArray(), tableColumnNames));
-        }
+        } else JOptionPane.showMessageDialog(null, "You must select one task to undone.", "Information",
+        JOptionPane.INFORMATION_MESSAGE);
     }// GEN-LAST:event_undoneBtnActionPerformed
 
     private void seeNoteBtnActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_seeNoteBtnActionPerformed
