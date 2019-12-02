@@ -320,6 +320,10 @@ public class MainView extends javax.swing.JFrame {
                 }
             }
 
+            if (taskType != "Urgent Tasks") {
+                urgentTasks.removeById(removedTask.getId());
+            }
+
             removedTasks.add(removedTask);
         } else JOptionPane.showMessageDialog(null, "You must select one task to remove.", "Information",
         JOptionPane.INFORMATION_MESSAGE);
@@ -348,6 +352,10 @@ public class MainView extends javax.swing.JFrame {
                     otherTasks.remove(row);
                     taskTable.setModel(new DefaultTableModel(otherTasks.toTaskGroupArray(), tableColumnNames));
                     break;
+                case "Urgent Tasks":
+                    urgentTasks.remove(row);
+                    taskTable.setModel(new DefaultTableModel(urgentTasks.toTaskGroupArray(), tableColumnNames));
+                    break;
                 default: {
                     if (doneTask.getCategory() == "Home Task") homeTasks.removeById(doneTask.getId());
                     else if (doneTask.getCategory() == "School Task") schoolTasks.removeById(doneTask.getId());
@@ -357,6 +365,9 @@ public class MainView extends javax.swing.JFrame {
                     taskTable.getColumnModel().getColumn(2).setCellRenderer(new MyDateTimeRenderer());
                     break;
                 }
+            }
+            if (taskType != "Urgent Tasks") {
+                urgentTasks.removeById(doneTask.getId());
             }
 
             doneTasks.add(doneTask);
@@ -386,6 +397,7 @@ public class MainView extends javax.swing.JFrame {
             }
             doneTasks.remove(row);
             taskTable.setModel(new DefaultTableModel(doneTasks.toTaskGroupArray(), tableColumnNames));
+            taskTable.getColumnModel().getColumn(2).setCellRenderer(new MyDateTimeRenderer());
         } else JOptionPane.showMessageDialog(null, "You must select one task to undone.", "Information",
         JOptionPane.INFORMATION_MESSAGE);
     }// GEN-LAST:event_undoneBtnActionPerformed
