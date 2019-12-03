@@ -2,6 +2,10 @@
 
 This is the repository of CS 151 project
 
+Java Swing To-do list program using Composite Design Pattern
+
+![Alt text](images/app.gif?raw=true "App")
+
 Members:
 - Anh Nguyen
 - Ahsan Ali Syed
