@@ -247,7 +247,7 @@ public class MainView extends javax.swing.JFrame {
         }
         if (currentTaskType == "All Tasks") {
             Object[][] all = allTasks.toAllTaskGroupArray();
-            note = (String) all[row][4];
+            note = (String) all[row][5];
             return note;
         }
         if (taskType == "Home Task") {
@@ -419,7 +419,7 @@ public class MainView extends javax.swing.JFrame {
         String taskType = (String) taskTypeSpinner.getSelectedItem();
         if (originalRow != -1) {
             int row = taskTable.convertRowIndexToModel(originalRow);
-            String category = taskTable.getModel().getValueAt(row, 3).toString();
+            String category = taskTable.getModel().getValueAt(row, 4).toString();
 
             String note = getNoteFromTable(row, category, taskType);
             if (note.equals("")) {
