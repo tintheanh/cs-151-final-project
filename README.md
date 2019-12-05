@@ -13,6 +13,8 @@ Members:
 - Brady Christensen
 - Draco Zhao
 
+Prerequisite: Java SE 8 (JDK 1.8)
+
 Install:
 ```
 git clone https://github.com/tintheanh/cs-151-final-project.git
@@ -22,4 +24,11 @@ How to run (Linux):
 ```
 javac -cp .:lib/* com/self/projecttodolist/view/MainView.java
 java -cp .:lib/* com.self.projecttodolist.view.MainView
+```
+
+How to run (Windows):
+Replace ":" by ";"
+```
+javac -cp .;lib/* com/self/projecttodolist/view/MainView.java
+java -cp .;lib/* com.self.projecttodolist.view.MainView
 ```
