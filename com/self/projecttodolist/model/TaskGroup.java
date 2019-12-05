@@ -64,6 +64,14 @@ public class TaskGroup<T> extends TaskComponent {
     }
 
     @Override
+    public boolean contains(int id) {
+        for (TaskComponent task : taskComponents) {
+            if (task.getId() == id) return true;
+        }
+        return false;
+    }
+
+    @Override
     public void displayTaskInfo() { // For debugging
         System.out.println(getGroupName() + " " + getGroupDescription() + "\n");
         Iterator taskIterator = taskComponents.iterator();

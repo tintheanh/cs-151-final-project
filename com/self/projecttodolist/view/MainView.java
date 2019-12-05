@@ -17,6 +17,8 @@ import java.time.ZoneId;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
+import static org.junit.jupiter.api.Assertions.*;
+
 /**
  *
  * @author anhnguyen
@@ -295,27 +297,49 @@ public class MainView extends javax.swing.JFrame {
             switch (taskType) {
                 case "Home Tasks":
                     homeTasks.remove(row);
+                    assertEquals(homeTasks.contains(removedTask.getId()), false);
                     taskTable.setModel(new DefaultTableModel(homeTasks.toTaskGroupArray(), tableColumnNames));
                     break;
                 case "School Tasks":
                     schoolTasks.remove(row);
+                    assertEquals(schoolTasks.contains(removedTask.getId()), false);
                     taskTable.setModel(new DefaultTableModel(schoolTasks.toTaskGroupArray(), tableColumnNames));
                     break;
                 case "Other Tasks":
                     otherTasks.remove(row);
+                    assertEquals(otherTasks.contains(removedTask.getId()), false);
                     taskTable.setModel(new DefaultTableModel(otherTasks.toTaskGroupArray(), tableColumnNames));
                     break;
                 case "Urgent Tasks":
                     urgentTasks.remove(row);
-                    if (removedTask.getCategory() == "Home Task") homeTasks.removeById(removedTask.getId());
-                    else if (removedTask.getCategory() == "School Task") schoolTasks.removeById(removedTask.getId());
-                    else otherTasks.removeById(removedTask.getId());
+                    assertEquals(urgentTasks.contains(removedTask.getId()), false);
+                    if (removedTask.getCategory() == "Home Task") {
+                        homeTasks.removeById(removedTask.getId());
+                        assertEquals(homeTasks.contains(removedTask.getId()), false);
+                    }
+                    else if (removedTask.getCategory() == "School Task") {
+                        schoolTasks.removeById(removedTask.getId());
+                        assertEquals(schoolTasks.contains(removedTask.getId()), false);
+                    }
+                    else {
+                        otherTasks.removeById(removedTask.getId());
+                        assertEquals(otherTasks.contains(removedTask.getId()), false);
+                    }
                     taskTable.setModel(new DefaultTableModel(urgentTasks.toTaskGroupArray(), tableColumnNames));
                     break;
                 default: {
-                    if (removedTask.getCategory() == "Home Task") homeTasks.removeById(removedTask.getId());
-                    else if (removedTask.getCategory() == "School Task") schoolTasks.removeById(removedTask.getId());
-                    else otherTasks.removeById(removedTask.getId());
+                    if (removedTask.getCategory() == "Home Task") {
+                        homeTasks.removeById(removedTask.getId());
+                        assertEquals(homeTasks.contains(removedTask.getId()), false);
+                    }
+                    else if (removedTask.getCategory() == "School Task") {
+                        schoolTasks.removeById(removedTask.getId());
+                        assertEquals(schoolTasks.contains(removedTask.getId()), false);
+                    }
+                    else {
+                        otherTasks.removeById(removedTask.getId());
+                        assertEquals(otherTasks.contains(removedTask.getId()), false);
+                    }
 
                     taskTable.setModel(new DefaultTableModel(allTasks.toAllTaskGroupArray(), tableColumnNames));
                     taskTable.getColumnModel().getColumn(2).setCellRenderer(new MyDateTimeRenderer());
@@ -325,6 +349,7 @@ public class MainView extends javax.swing.JFrame {
 
             if (taskType != "Urgent Tasks") {
                 urgentTasks.removeById(removedTask.getId());
+                assertEquals(urgentTasks.contains(removedTask.getId()), false);
             }
 
             removedTasks.add(removedTask);
@@ -345,27 +370,49 @@ public class MainView extends javax.swing.JFrame {
             switch (taskType) {
                 case "Home Tasks":
                     homeTasks.remove(row);
+                    assertEquals(homeTasks.contains(doneTask.getId()), false);
                     taskTable.setModel(new DefaultTableModel(homeTasks.toTaskGroupArray(), tableColumnNames));
                     break;
                 case "School Tasks":
                     schoolTasks.remove(row);
+                    assertEquals(schoolTasks.contains(doneTask.getId()), false);
                     taskTable.setModel(new DefaultTableModel(schoolTasks.toTaskGroupArray(), tableColumnNames));
                     break;
                 case "Other Tasks":
                     otherTasks.remove(row);
+                    assertEquals(otherTasks.contains(doneTask.getId()), false);
                     taskTable.setModel(new DefaultTableModel(otherTasks.toTaskGroupArray(), tableColumnNames));
                     break;
                 case "Urgent Tasks":
                     urgentTasks.remove(row);
-                    if (doneTask.getCategory() == "Home Task") homeTasks.removeById(doneTask.getId());
-                    else if (doneTask.getCategory() == "School Task") schoolTasks.removeById(doneTask.getId());
-                    else otherTasks.removeById(doneTask.getId());
+                    assertEquals(urgentTasks.contains(doneTask.getId()), false);
+                    if (doneTask.getCategory() == "Home Task") {
+                        homeTasks.removeById(doneTask.getId());
+                        assertEquals(homeTasks.contains(doneTask.getId()), false);
+                    }
+                    else if (doneTask.getCategory() == "School Task") {
+                        schoolTasks.removeById(doneTask.getId());
+                        assertEquals(schoolTasks.contains(doneTask.getId()), false);
+                    }
+                    else {
+                        otherTasks.removeById(doneTask.getId());
+                        assertEquals(otherTasks.contains(doneTask.getId()), false);
+                    }
                     taskTable.setModel(new DefaultTableModel(urgentTasks.toTaskGroupArray(), tableColumnNames));
                     break;
                 default: {
-                    if (doneTask.getCategory() == "Home Task") homeTasks.removeById(doneTask.getId());
-                    else if (doneTask.getCategory() == "School Task") schoolTasks.removeById(doneTask.getId());
-                    else otherTasks.removeById(doneTask.getId());
+                    if (doneTask.getCategory() == "Home Task") {
+                        homeTasks.removeById(doneTask.getId());
+                        assertEquals(homeTasks.contains(doneTask.getId()), false);
+                    }
+                    else if (doneTask.getCategory() == "School Task") {
+                        schoolTasks.removeById(doneTask.getId());
+                        assertEquals(schoolTasks.contains(doneTask.getId()), false);
+                    }
+                    else {
+                        otherTasks.removeById(doneTask.getId());
+                        assertEquals(otherTasks.contains(doneTask.getId()), false);
+                    }
 
                     taskTable.setModel(new DefaultTableModel(allTasks.toAllTaskGroupArray(), tableColumnNames));
                     taskTable.getColumnModel().getColumn(2).setCellRenderer(new MyDateTimeRenderer());
@@ -374,6 +421,7 @@ public class MainView extends javax.swing.JFrame {
             }
             if (taskType != "Urgent Tasks") {
                 urgentTasks.removeById(doneTask.getId());
+                assertEquals(urgentTasks.contains(doneTask.getId()), false);
             }
 
             doneTasks.add(doneTask);
@@ -393,12 +441,15 @@ public class MainView extends javax.swing.JFrame {
             switch (undoneTask.getCategory()) {
             case "Home Task":
                 homeTasks.add(undoneTask);
+                assertEquals(homeTasks.contains(undoneTask.getId()), true);
                 break;
             case "School Task":
                 schoolTasks.add(undoneTask);
+                assertEquals(schoolTasks.contains(undoneTask.getId()), true);
                 break;
             default:
                 otherTasks.add(undoneTask);
+                assertEquals(otherTasks.contains(undoneTask.getId()), true);
                 break;
             }
             Date date = Date.from( undoneTask.getDate().atZone( ZoneId.systemDefault()).toInstant());
@@ -406,8 +457,10 @@ public class MainView extends javax.swing.JFrame {
 
             if (days >= 0 && days <= 7.0) {
                 urgentTasks.add(undoneTask);
+                assertEquals(urgentTasks.contains(undoneTask.getId()), true);
             }
             doneTasks.remove(row);
+            assertEquals(doneTasks.contains(undoneTask.getId()), false);
             taskTable.setModel(new DefaultTableModel(doneTasks.toTaskGroupArray(), tableColumnNames));
             taskTable.getColumnModel().getColumn(2).setCellRenderer(new MyDateTimeRenderer());
         } else JOptionPane.showMessageDialog(null, "You must select one task to undone.", "Information",

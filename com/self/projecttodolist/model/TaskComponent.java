@@ -30,6 +30,10 @@ public abstract class TaskComponent<T> {
         throw new UnsupportedOperationException();
     }
 
+    public boolean contains(int id) {
+        throw new UnsupportedOperationException();
+    }
+
     public void removeById(int id) {
         throw new UnsupportedOperationException();
     }

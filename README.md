@@ -13,10 +13,13 @@ Members:
 - Brady Christensen
 - Draco Zhao
 
-How to run:
+Install:
 ```
 git clone https://github.com/tintheanh/cs-151-final-project.git
 cd cs-151-final-project/
-javac com/self/projecttodolist/view/MainView.java
-java com.self.projecttodolist.view.MainView
+```
+How to run (Linux):
+```
+javac -cp .:lib/* com/self/projecttodolist/view/MainView.java
+java -cp .:lib/* com.self.projecttodolist.view.MainView
 ```

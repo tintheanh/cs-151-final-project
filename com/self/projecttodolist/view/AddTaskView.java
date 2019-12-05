@@ -222,7 +222,7 @@ public class AddTaskView extends javax.swing.JFrame {
 
         private void addBtnActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_addBtnActionPerformed
                 DefaultTableModel model = (DefaultTableModel) taskTable.getModel();
-                
+
                 String name = taskName.getText();
                 Date date = date_chooser.getDate();
                 String note = noteField.getText();
