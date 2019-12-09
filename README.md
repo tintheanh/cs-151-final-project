@@ -24,7 +24,6 @@ java -cp .:lib/* com.self.projecttodolist.view.MainView
 ```
 
 How to run (Windows):
-Replace ":" by ";"
 ```
 javac -cp .;lib/* com/self/projecttodolist/view/MainView.java
 java -cp .;lib/* com.self.projecttodolist.view.MainView
