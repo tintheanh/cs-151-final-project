@@ -7,7 +7,6 @@ Java Swing To-do list program using Composite Design Pattern
 Members:
 - Anh Nguyen
 - Ahsan Ali Syed
-- Brady Christensen
 - Draco Zhao
 
 Prerequisite: Java SE 8 (JDK 1.8)
